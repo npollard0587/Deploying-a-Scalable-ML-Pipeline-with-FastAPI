@@ -1,28 +1,36 @@
 import pytest
-# TODO: add necessary import
+from ml.data import apply_label
+from ml.model import compute_model_metrics
 
-# TODO: implement the first test. Change the function name and input as needed
-def test_one():
+
+def test_compute_model_metrics():
     """
-    # add description for the first test
+    Test that perfect redictions produce perfect metrics.
     """
-    # Your code here
+    y = [0, 1, 0, 1]
+    preds = [0, 1, 0, 1]
+
+    precision, recall, fbeta = compute_model_metrics(y, preds)
+
+    assert precision == 1.0
+    assert recall == 1.0
+    assert fbeta == 1.0
     pass
 
 
-# TODO: implement the second test. Change the function name and input as needed
-def test_two():
+
+def test_apply_label_positive():
     """
-    # add description for the second test
+    Test conversion of positive prediction label.
     """
-    # Your code here
+    assert apply_label([1]) == ">50K"
     pass
 
 
-# TODO: implement the third test. Change the function name and input as needed
-def test_three():
+
+def test_apply_label_negative():
     """
-    # add description for the third test
+    Test conversion of negative prediction label.
     """
-    # Your code here
+    assert apply_label([0]) == "<=50K"
     pass
